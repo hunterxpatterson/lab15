@@ -31,12 +31,24 @@ class MyApp:
 		self.myContainer1.pack()
 		
 		self.up = Button(self.myContainer1)
-		self.up.configure(text="Up", background= "green")
-		self.up.grid(row=0,column=0)
-					
-		# "Bind" an action to the first button												
+		self.up.configure(text="Up", background= "purple")
+		self.up.grid(row=0,column=0)												
 		self.up.bind("<Button-1>", self.moveUp)
                 
+                self.up = Button(self.myContainer1)
+		self.up.configure(text="Down", background= "orange")
+		self.up.grid(row=1,column=0)												
+		self.up.bind("<Button-1>", self.moveDown)
+		
+		self.up = Button(self.myContainer1)
+		self.up.configure(text="Right", background= "red")
+		self.up.grid(row=0,column=1)												
+		self.up.bind("<Button-1>", self.moveRight)
+		
+		self.up = Button(self.myContainer1)
+		self.up.configure(text="Left", background= "yellow")
+		self.up.grid(row=1,column=1)												
+		self.up.bind("<Button-1>", self.moveLeft)
 		  
 		# This creates the drawpad - no need to change this 
 		drawpad.pack()
@@ -47,7 +59,21 @@ class MyApp:
 		global player
 		global drawpad
                 drawpad.move(player,0,-10)
-    
+                
+        def moveDown(self, event):   
+		global player
+		global drawpad
+                drawpad.move(player,0,10)
+        
+        def moveRight(self, event):   
+		global player
+		global drawpad
+                drawpad.move(player,10,0)
+            
+        def moveLeft(self, event):   
+		global player
+		global drawpad
+                drawpad.move(player,-10,0)
          
         # Animate function that will bounce target left and right, and trigger the collision detection  
 	def animate(self):
